@@ -25,12 +25,6 @@ Bài tập thực hành Java
 
 ## Practice 1 — Shape / Rectangle / Circle
 
-Xây dựng lớp `Shape` trừu tượng với thuộc tính `width`, `height`; hai lớp con:
-
-- `Rectangle`: `getArea()` = width * height, `getPerimeter()` = 2 * (width + height)
-- `Circle`: `getArea()` = π * r², `getCircumference()` = đường kính * 3.14
-
-Chương trình khởi tạo một danh sách các Shape (Rectangle và Circle) rồi in ra diện tích, chu vi/chu vi tròn của từng đối tượng — minh họa tính đa hình (polymorphism).
 
 **Chạy:**
 ```bash
@@ -40,21 +34,6 @@ java Practice1
 ```
 
 ## Practice 2 — Quản lý kho hàng siêu thị
-
-Quản lý 3 loại hàng hóa: thực phẩm (`Food`), đồ điện tử (`Electronics`), đồ gốm sứ (`Crockery`), tất cả kế thừa từ lớp trừu tượng `Goods`.
-
-| Loại hàng | Thuộc tính riêng | VAT |
-|---|---|---|
-| Food | ngày sản xuất, hạn sử dụng, nhà cung cấp | 5% |
-| Electronics | số tháng bảo hành, công suất (KW) | 10% |
-| Crockery | thông tin nhà sản xuất, ngày nhập kho | 10% |
-
-**Đánh giá tiêu thụ (`evaluateConsumption`)**:
-- Electronics: tồn kho < 3 → coi như đã bán hết
-- Food: còn tồn kho và đã hết hạn → khó bán
-- Crockery: tồn kho > 50 và lưu kho > 10 ngày → bán chậm
-
-`GoodsManager` dùng mảng lưu danh sách hàng hóa, kiểm tra trùng mã sản phẩm khi thêm, cho phép người dùng chọn loại hàng cần thêm qua menu console.
 
 **Chạy:**
 ```bash
@@ -68,22 +47,6 @@ Chương trình có menu tương tác — nhập số (0-5) rồi Enter để ch
 
 Quản lý 3 loại phương tiện: `Car` (ô tô), `Motorbike` (xe máy), `Truck` (xe tải), kế thừa từ lớp trừu tượng `Vehicle`. Mỗi phương tiện có một chủ sở hữu (`Owner`).
 
-**Ràng buộc dữ liệu:**
-- Biển số xe: đúng 5 ký tự, không trùng
-- Hãng sản xuất: chỉ chấp nhận Honda, Yamaha, Toyota, Suzuki
-- Năm sản xuất: > 2000 và ≤ năm hiện tại
-- Số CMND/CCCD: đúng 12 chữ số, duy nhất
-- Email: đúng định dạng
-
-**Chức năng quản lý (`VehicleManager`):**
-1. Thêm phương tiện
-2. Tìm phương tiện theo biển số
-3. Tìm phương tiện theo số CMND chủ sở hữu
-4. Xóa toàn bộ phương tiện theo hãng sản xuất
-5. Xác định hãng có nhiều phương tiện nhất
-6. Sắp xếp các hãng theo số lượng phương tiện giảm dần
-7. Thống kê số lượng phương tiện theo từng loại
-
 **Chạy:**
 ```bash
 cd Practice3
@@ -91,9 +54,3 @@ javac Practice3.java
 java Practice3
 ```
 
-## Ghi chú
-
-Nếu máy có nhiều bản Java cài song song (ví dụ Java 8 và Java 21), đảm bảo JDK mới được ưu tiên trong biến môi trường `PATH` trước khi biên dịch — kiểm tra bằng:
-```bash
-java -version
-```
