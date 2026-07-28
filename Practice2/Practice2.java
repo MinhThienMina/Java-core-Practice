@@ -54,7 +54,7 @@ abstract class Goods {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s | code=%s | qty=%d | price=%.2f | VAT=%.2f | eval=%s",
+        return String.format("%-10s %-20s | code=%-8s | qty=%-4d | price=%-12.2f | VAT=%-12.2f | eval=%s",
                 this.getClass().getSimpleName(), name, productCode, quantity, unitPrice,
                 getVatAmount(), evaluateConsumption());
     }
@@ -243,8 +243,19 @@ class GoodsManager {
 
     public void displayAll() {
         System.out.println("----- Inventory list (" + size + " items) -----");
+        System.out.printf("%-10s %-20s %-10s %-6s %-14s %-14s %s%n",
+                "Type", "Name", "Code", "Qty", "Price", "VAT", "Eval");
+        System.out.println("-".repeat(90));
         for (int i = 0; i < size; i++) {
-            System.out.println(list[i]);
+            Goods goods = list[i];
+            System.out.printf("%-10s %-20s %-10s %-6d %-14.2f %-14.2f %s%n",
+                    goods.getClass().getSimpleName(),
+                    goods.getName(),
+                    goods.getProductCode(),
+                    goods.getQuantity(),
+                    goods.getUnitPrice(),
+                    goods.getVatAmount(),
+                    goods.evaluateConsumption());
         }
     }
 

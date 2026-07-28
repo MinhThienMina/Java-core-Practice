@@ -249,8 +249,32 @@ class VehicleManager {
     }
 
     public void displayAll() {
-        System.out.println("\n ----- All managed vehicles (" + vehicles.size() + ") -----");
-        vehicles.forEach(System.out::println);
+        System.out.println("\nAll managed vehicles (" + vehicles.size() + ")");
+        System.out.printf("%-10s %-10s %-12s %-6s %-12s %-20s %s%n",
+                "Type", "Number", "Manufacturer", "Year", "Color", "Owner", "Details");
+        System.out.println("-".repeat(120));
+
+        for (Vehicle vehicle : vehicles) {
+            String details;
+            if (vehicle instanceof Car car) {
+                details = String.format("seats=%d, engine=%s", car.getSeats(), car.getEngineType());
+            } else if (vehicle instanceof Motorbike motorbike) {
+                details = String.format("capacity=%.1fcc", motorbike.getCapacity());
+            } else if (vehicle instanceof Truck truck) {
+                details = String.format("tonnage=%.1ft", truck.getTonnage());
+            } else {
+                details = "";
+            }
+
+            System.out.printf("%-10s %-10s %-12s %-6d %-12s %-20s %s%n",
+                    vehicle.getClass().getSimpleName(),
+                    vehicle.getVehicleNumber(),
+                    vehicle.getManufacturer(),
+                    vehicle.getYear(),
+                    vehicle.getColor(),
+                    vehicle.getOwner().getFullName(),
+                    details);
+        }
     }
 }
 
@@ -271,23 +295,23 @@ public class Practice3 {
 
         manager.displayAll();
 
-        System.out.println("\n ---- Search by vehicle number '59B34' ----");
+        System.out.println("\nSearch by vehicle number '59B34'");
         System.out.println(manager.searchByVehicleNumber("59B34"));
 
-        System.out.println("\n ----- Vehicles owned by cmnd 123456789012 ----");
+        System.out.println("\nVehicles owned by cmnd 123456789012");
         manager.findByOwnerCmnd("123456789012").forEach(System.out::println);
 
-        System.out.println("\n ---- Manufacturer with most vehicles ----");
+        System.out.println("\nManufacturer with most vehicles");
         System.out.println(manager.manufacturerWithMostVehicles());
 
-        System.out.println("\n ---- Manufacturers sorted by vehicle count (desc) ----");
+        System.out.println("\nManufacturers sorted by vehicle count (desc)");
         manager.sortManufacturersByCountDesc()
                 .forEach(e -> System.out.println(e.getKey() + ": " + e.getValue()));
 
-        System.out.println("\n ---- Vehicle count by type ----");
+        System.out.println("\nVehicle count by type");
         manager.countByType().forEach((type, count) -> System.out.println(type + ": " + count));
 
-        System.out.println("\n---- Delete all Honda vehicles ----");
+        System.out.println("\nDelete all Honda vehicles");
         int deleted = manager.deleteByManufacturer("Honda");
         System.out.println("Deleted " + deleted + " Honda vehicle(s).");
         manager.displayAll();
